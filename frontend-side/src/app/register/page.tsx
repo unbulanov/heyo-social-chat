@@ -5,10 +5,10 @@ import { NO_INDEX_PAGE } from "@/constants/seo.constants";
 
 
 export const metadata: Metadata = {
-  title: 'LOGIN',
+  title: 'REGISTER',
   ...NO_INDEX_PAGE
 }
 
-export default function LoginPage() {
-  return <Auth type='Login' />
+export default function RegisterPage() {
+  return <Auth type='Register' />
 }

@@ -10,7 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         white: '#EFEFF3',
-        border: '#362328'
+        border: '#362328',
+        primary: '#6F3AFF'
       },
       padding: {
         layout: '1.25rem',
