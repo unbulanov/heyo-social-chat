@@ -71,6 +71,24 @@
       ],
       "type": "media",
       "multiple": false
+    },
+    "chats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::chat.chat",
+      "mappedBy": "participants"
+    },
+    "chat": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::chat.chat",
+      "mappedBy": "participants"
+    },
+    "messages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message",
+      "mappedBy": "sender"
     }
   }
 }
