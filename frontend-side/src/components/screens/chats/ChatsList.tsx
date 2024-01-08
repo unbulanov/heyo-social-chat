@@ -2,17 +2,28 @@
 import { fetchClient } from "@/$api/api.fetch";
 import Field from "@/components/ui/field/Field";
 import { Loader } from "@/components/ui/loader/Loader";
-import { IChat } from "@/types/chat.types";
+import { useAuth } from "@/hooks/useAuth";
+import { IStrapiChat, IStrapiResponse } from "@/types/chat.types";
 import { useQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 import { ChatListItem } from "./ChatListItem";
 
 export function ChatsList() {
+  const { user, isLoggedIn } = useAuth()
+
   const { data, isLoading } = useQuery({
     queryKey: ['chats'],
-    //@ts-ignore
-    queryFn: () => fetchClient.get<IChat[]>('/chats', true)
+    queryFn: () => fetchClient.get<{ data: IStrapiResponse<IStrapiChat>[] }>(
+      `/chats?sort=createdAt:desc
+      &populate[messages]=*
+      &populate[participants][populate][avatar]=*
+      &filters[participants][email][$eq]=${user?.email}
+      `,
+      true
+    ),
+    enabled: isLoggedIn,
   })
+
   return (
     <div>
       <div className="border-t border-b border-border p-layout">
@@ -23,8 +34,10 @@ export function ChatsList() {
           <div className="p-layout">
             <Loader />
           </div>
-          ) : data?.length ? (
-            data.map(chat => <ChatListItem key={chat.id} {...chat} />)
+          ) : data?.data.length ? (
+            data?.data.map(({ id, attributes: chat }) => {
+              return <ChatListItem key={id} data={chat} id={id} />
+            })
           ) : (
             <p className="p-layout">Chats not found</p>
           )}

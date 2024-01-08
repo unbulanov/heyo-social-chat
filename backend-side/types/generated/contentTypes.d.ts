@@ -374,15 +374,15 @@ export interface ApiChatChat extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    participants: Attribute.Relation<
-      'api::chat.chat',
-      'manyToMany',
-      'plugin::users-permissions.user'
-    >;
     messages: Attribute.Relation<
       'api::chat.chat',
       'oneToMany',
       'api::message.message'
+    >;
+    participants: Attribute.Relation<
+      'api::chat.chat',
+      'manyToMany',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -683,11 +683,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.role'
     >;
     Avatar: Attribute.Media;
-    chats: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'manyToMany',
-      'api::chat.chat'
-    >;
     chat: Attribute.Relation<
       'plugin::users-permissions.user',
       'manyToMany',

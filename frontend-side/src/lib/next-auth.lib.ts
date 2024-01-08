@@ -46,10 +46,10 @@ export default NextAuth ({
             )
 
             return {
-              id: data.user.email,
               email: data.user.email,
-              avatar: data.user.avatar,
               username: data.user.username,
+              avatar: data.user.avatar,
+              id: data.user.email,
               jwt: data.jwt,
             } as User
           } catch (e) {

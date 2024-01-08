@@ -65,25 +65,25 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "Avatar": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "avatar": {
       "allowedTypes": [
         "images"
-      ]
-    },
-    "chat": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::chat.chat",
-      "mappedBy": "participants"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
     },
     "messages": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::message.message",
       "mappedBy": "sender"
+    },
+    "chats": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::chat.chat",
+      "mappedBy": "participants"
     }
   }
 }

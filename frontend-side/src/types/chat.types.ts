@@ -12,3 +12,13 @@ export interface IChat {
   messages: IMessage[],
   participants: IUser[]
 }
+
+export interface IStrapiChat {
+	messages: { data: IStrapiResponse<IMessage>[] }
+	participants: { data: IStrapiResponse<IUser>[] }
+}
+
+export interface IStrapiResponse<T> {
+	attributes: T
+	id: number
+}

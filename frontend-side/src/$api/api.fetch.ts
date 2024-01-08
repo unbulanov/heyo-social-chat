@@ -7,8 +7,8 @@ class FetchClient {
 
   async get<T>(
     path: string,
+    isAuth: boolean = false,
     headers?: Record<string, string>,
-    isAuth: boolean = false
   ): Promise<T> {
     return this.fetch<T>(path, 'GET', isAuth, undefined, headers)
   }
@@ -16,8 +16,8 @@ class FetchClient {
   async post<T>(
     path: string,
     body?: Record<string, any>,
+    isAuth: boolean = false,
     headers?: Record<string, string>,
-    isAuth: boolean = false
   ): Promise<T> {
     return this.fetch<T>(path, 'POST', isAuth, body, headers)
   }
@@ -25,16 +25,16 @@ class FetchClient {
   async put<T>(
     path: string,
     body?: Record<string, any>,
+    isAuth: boolean = false,
     headers?: Record<string, string>,
-    isAuth: boolean = false
   ): Promise<T> {
     return this.fetch<T>(path, 'PUT', isAuth, body, headers)
   }
 
   async delete<T>(
     path: string,
+    isAuth: boolean = false,
     headers?: Record<string, string>,
-    isAuth: boolean = false
   ): Promise<T> {
     return this.fetch<T>(path, 'DELETE', isAuth, undefined, headers)
   }
@@ -42,8 +42,8 @@ class FetchClient {
   async patch<T>(
     path: string,
     body?: Record<string, any>,
+    isAuth: boolean = false,
     headers?: Record<string, string>,
-    isAuth: boolean = false
   ): Promise<T> {
     return this.fetch<T>(path, 'PATCH', isAuth, body, headers)
   }
@@ -74,7 +74,7 @@ class FetchClient {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data)
+        throw new Error(data.error)
       }
 
       return data

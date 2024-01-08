@@ -6,11 +6,12 @@ declare module "next-auth" {
   }
 
   interface User {
-    id?: string,
     email?: string,
-    avatar?: string,
     username?: string,
+    avatar?: string,
+    id?: string,
     jwt?: string,
+    friends?: User[]
   }
 }
 

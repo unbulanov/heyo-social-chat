@@ -12,16 +12,16 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "messages": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::message.message"
-    },
     "participants": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "chat"
+      "inversedBy": "chats"
+    },
+    "messages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::message.message"
     }
   }
 }
